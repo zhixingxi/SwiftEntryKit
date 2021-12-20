@@ -80,12 +80,20 @@ public extension EKAttributes {
         // Accessors
         // TODO: Use `statusBarManager` of the window scene on iOS 13
         private static var currentStyle: UIStatusBarStyle {
-            return UIApplication.shared.statusBarStyle
+            if #available(iOS 13, *) {
+                return UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarStyle ?? .default
+            } else {
+                return UIApplication.shared.statusBarStyle
+            }
         }
         
         // TODO: Use `statusBarManager` of the window scene on iOS 13
         private static var isCurrentVisible: Bool {
-            return !UIApplication.shared.isStatusBarHidden
+            if #available(iOS 13, *) {
+                return !(UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.isStatusBarHidden ?? false)
+            } else {
+                return !UIApplication.shared.isStatusBarHidden
+            }
         }
     }
 }

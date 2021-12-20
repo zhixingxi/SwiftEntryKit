@@ -76,7 +76,9 @@ public struct EKAttributes {
     /** The border around the entry */
     public var border = Border.none
     
-    /** Preferred status bar style while the entry shows */
+    /** Preferred status bar style while the entry shows
+     * 如果弹窗展示的是 UIViewController，statusBar 样式由弹窗当前展示的 Controller 决定，这个属性不起作用。如果展示的是 UIView 这个设置才管用
+     */
     public var statusBar = StatusBar.inferred
     
     // MARK: Animation Attributes

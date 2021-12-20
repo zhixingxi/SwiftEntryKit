@@ -81,6 +81,10 @@ class EKRootViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
+        if let child = children.last {
+            return child.preferredStatusBarStyle
+        }
+
         if [previousStatusBar, statusBar].contains(.ignored) {
             return super.preferredStatusBarStyle
         }
@@ -88,6 +92,10 @@ class EKRootViewController: UIViewController {
     }
 
     override var prefersStatusBarHidden: Bool {
+        if let child = children.last {
+            return child.prefersStatusBarHidden
+        }
+
         if [previousStatusBar, statusBar].contains(.ignored) {
             return super.prefersStatusBarHidden
         }
